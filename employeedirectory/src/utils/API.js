@@ -1,10 +1,6 @@
 import axios from "axios";
 
+export default axios.create({
+  baseURL: 'https://randomuser.me/api/?results=100&nat=us'
+});
 
-export default {
-  filterUser: function() {
-    return axios.get("https://randomuser.me/api/?results=100&nat=us");
-  
-}
-
-}

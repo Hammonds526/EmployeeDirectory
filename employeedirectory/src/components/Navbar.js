@@ -3,15 +3,17 @@ import "../styles/Navbar.css";
 
 const styles = {
   navbarStyle: {
-    background: "green",
-    justifyContent: "flex-end",
+    background: "lightBlue",
+    justifyContent: "center",
+    padding: "5px",
+    marginBottom: "15px",
   },
 };
 
 function Navbar() {
   return (
     <nav style={styles.navbarStyle} className="navbar">
-      <a href="/">Welcome</a>
+      <h1>Employee Directory</h1>
     </nav>
   );
 }
