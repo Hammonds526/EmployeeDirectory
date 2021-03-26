@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import axios from 'axios';
-// import './App.css';
+import './App.css';
 import Navbar from'./components/Navbar';
 import Form from './components/Form';
-import TableHeader from './components/Table';
-import API from "./utils/API";
-import TableRows from "./components/TableRows";
+import Table from './components/Table';
+// import API from "./utils/API";
+import { get } from "./utils/API";
+// import TableRows from "./components/TableRows";
 
 // import Footer from './components/Footer'
 
@@ -14,18 +14,14 @@ class App extends Component{
       users: {},
       userCopy: {}
   };
- 
-  getUsers(res) {
-    API.get()
-    .then(res = this.setState({users: res.data}));
-    console.log(res)
+
+  componentDidMount() {
+    get()
+    .then(res => {
+      console.log(res.data);
+      this.setState({users: res.data})
+    });
   }
-
-  // componentDidMount() {
-  //   this.getUsers() {
-
-  //   }
-  // }
 
 
  render() {
@@ -36,10 +32,11 @@ class App extends Component{
         //  value={this.state.search}
         //  handleInputChange={this.handleInputChange}
          />
-         <table>
+         {/* <table>
          <TableHeader />
          <TableRows />
-         </table>
+         </table> */}
+         <Table data={this.state.users} />
          {/* <Footer /> */}
        </div>
      );

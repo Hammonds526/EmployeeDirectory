@@ -9,6 +9,7 @@ function TableRows() {
       <th>email@email.com</th>
       <th>05-26-1993</th>
     </tr>
+    
   );
 }
 

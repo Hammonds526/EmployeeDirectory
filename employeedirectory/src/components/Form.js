@@ -16,7 +16,7 @@ function Form() {
       <div style={styles.form}>
     <input style={styles.input}
       type="email"
-      class="form-control"
+      className="form-control"
       id="exampleFormControlInput1"
       placeholder="Search"
     ></input>
