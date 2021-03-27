@@ -13,7 +13,7 @@ function Table(props) {
           <th>Name</th>
           <th>Phone</th>
           <th>Email</th>
-          <th>DOB</th>
+          <th>ID</th>
         </tr>
       </thead>
       
@@ -31,6 +31,9 @@ function Table(props) {
     <tr>
       <td><img src={rows.picture.thumbnail} alt='img Thumbnail'/></td>
       <td>{rows.name.first} {rows.name.last}</td>
+      <td>{rows.phone}</td>
+      <td>{rows.email}</td>
+      <td>{rows.id.value}</td>
     </tr>
     )}
       </tbody>

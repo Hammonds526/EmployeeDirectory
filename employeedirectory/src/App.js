@@ -32,10 +32,6 @@ class App extends Component{
         //  value={this.state.search}
         //  handleInputChange={this.handleInputChange}
          />
-         {/* <table>
-         <TableHeader />
-         <TableRows />
-         </table> */}
          <Table data={this.state.users} />
          {/* <Footer /> */}
        </div>
