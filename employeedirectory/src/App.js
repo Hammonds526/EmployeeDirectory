@@ -11,15 +11,16 @@ import { get } from "./utils/API";
 
 class App extends Component{
   state = {
-      users: {},
-      userCopy: {}
+      users: [],
+      userCopy: []
   };
 
   componentDidMount() {
     get()
     .then(res => {
-      console.log(res.data);
-      this.setState({users: res.data})
+      console.log(res.data.results);
+      this.setState({users: res.data.results})
+      this.setState({userCopy: res.data.results})
     });
   }
 
@@ -30,9 +31,11 @@ class App extends Component{
          <Navbar />
          <Form 
         //  value={this.state.search}
-        //  handleInputChange={this.handleInputChange}
+        //  handleInputChange={this.setState}
          />
-         <Table data={this.state.users} />
+         <Table 
+         data={this.state.users}
+         />
          {/* <Footer /> */}
        </div>
      );

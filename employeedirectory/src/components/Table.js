@@ -27,7 +27,7 @@ function Table(props) {
         <td>05-26-1993</td>
     </tr>
 
-    {props.data.results.map(rows => 
+    {props.data.map(rows => 
     <tr>
       <td><img src={rows.picture.thumbnail} alt='img Thumbnail'/></td>
       <td>{rows.name.first} {rows.name.last}</td>
