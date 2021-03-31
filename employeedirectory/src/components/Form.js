@@ -11,7 +11,7 @@ const styles = {
 
 }
 
-function Form() {
+function Form(props) {
   return (
       <div style={styles.form}>
     <input style={styles.input}
@@ -19,6 +19,7 @@ function Form() {
       className="form-control"
       id="exampleFormControlInput1"
       placeholder="Search"
+      onChange = {props.onSearch}
     ></input>
     </div>
   );

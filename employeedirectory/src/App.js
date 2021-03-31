@@ -12,29 +12,37 @@ import { get } from "./utils/API";
 class App extends Component{
   state = {
       users: [],
-      userCopy: []
+      // userCopyFilter: [],
+      search: ""
   };
 
+  
   componentDidMount() {
     get()
     .then(res => {
       console.log(res.data.results);
       this.setState({users: res.data.results})
-      this.setState({userCopy: res.data.results})
+      // this.setState({userCopyFilter: res.data.results})
     });
   }
 
+  onSearch = (event) => {
+    console.log("works")
+    // console.log(event.target.value)
+    this.setState({search: event.target.value})
+    console.log(this.state.search)
+  }
 
  render() {
      return (
        <div className="App">
          <Navbar />
-         <Form 
+         <Form onSearch = {this.onSearch}
         //  value={this.state.search}
         //  handleInputChange={this.setState}
          />
          <Table 
-         data={this.state.users}
+         data = {this.state.search.length > 0 ? this.state.users.filter(users => {return users.name.first.includes(this.state.search)}) : this.state.users}
          />
          {/* <Footer /> */}
        </div>
