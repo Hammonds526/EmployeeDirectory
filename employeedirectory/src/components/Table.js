@@ -1,35 +1,31 @@
 import React from "react";
-// import TableRows from "./TableRows";
-import "../styles/Table.css"
 
-function Table(props) {
-  console.log("Table Data");
-  console.log(props.data);
+function Table({data , handleSort}) {
+  // console.log("Table Data");
+  // console.log(data);
   return (
-    <table>
+    <table className="table table-striped ">
       <thead>
         <tr>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Email</th>
-          <th>ID</th>
+          <th scope="col">Image</th>
+          <th scope="col"><button onClick={() => {handleSort(data)}}>Name</button></th>
+          <th scope="col">Phone</th>
+          <th scope="col">Email</th>
+          <th scope="col">ID</th>
         </tr>
       </thead>
       
       <tbody>
-        
-      <tr>
+      {/* <tr>
         <td>Image Here</td>
         <td>Garth Hammonds</td>
         <td>(555)123-4567</td>
         <td>email@email.com</td>
         <td>05-26-1993</td>
-    </tr>
-
-    {props.data.map(rows => 
+    </tr> */}
+    {data.map(rows => 
     <tr>
-      <td><img src={rows.picture.thumbnail} alt='img Thumbnail'/></td>
+      <td scope="row"><img src={rows.picture.medium} alt='img Thumbnail'/></td>
       <td>{rows.name.first} {rows.name.last}</td>
       <td>{rows.phone}</td>
       <td>{rows.email}</td>
@@ -38,7 +34,6 @@ function Table(props) {
     )}
       </tbody>
     </table>
-      
         
   );
 }

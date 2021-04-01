@@ -3,16 +3,13 @@ import './App.css';
 import Navbar from'./components/Navbar';
 import Form from './components/Form';
 import Table from './components/Table';
-// import API from "./utils/API";
 import { get } from "./utils/API";
-// import TableRows from "./components/TableRows";
-
 // import Footer from './components/Footer'
 
 class App extends Component{
   state = {
       users: [],
-      // userCopyFilter: [],
+      sorted: "desc",
       search: ""
   };
 
@@ -20,10 +17,22 @@ class App extends Component{
   componentDidMount() {
     get()
     .then(res => {
-      console.log(res.data.results);
+      // console.log(res.data.results);
       this.setState({users: res.data.results})
-      // this.setState({userCopyFilter: res.data.results})
     });
+  }
+
+  sortUsers = () => {
+    if (this.state.sorted === "desc") {
+      const sortedUsers = this.state.users.sort((a, b) =>  (b.name.first.toLocaleLowerCase() > a.name.first.toLocaleLowerCase()) ? 1: -1) 
+      this.setState({users: sortedUsers});
+      this.setState({sorted: "asc"})
+    } else {
+      const sortedUsers = this.state.users.sort((a, b) =>  (b.name.first.toLocaleLowerCase() < a.name.first.toLocaleLowerCase()) ? 1: -1)       
+      this.setState({users: sortedUsers});
+      this.setState({sorted: "desc"})
+    }
+      
   }
 
   onSearch = (event) => {
@@ -37,14 +46,15 @@ class App extends Component{
      return (
        <div className="App">
          <Navbar />
-         <Form onSearch = {this.onSearch}
-        //  value={this.state.search}
-        //  handleInputChange={this.setState}
-         />
+         <div className="container">
+         <Form onSearch = {this.onSearch}/>
          <Table 
-         data = {this.state.search.length > 0 ? this.state.users.filter(users => {return users.name.first.includes(this.state.search)}) : this.state.users}
+         data = {this.state.search.length > 0 ? this.state.users.filter(users => {return users.name.first.toLowerCase().includes(this.state.search.toLocaleLowerCase())}) : this.state.users}
+         handleSort = {this.sortUsers}
          />
+         
          {/* <Footer /> */}
+       </div>
        </div>
      );
    }
